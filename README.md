@@ -60,7 +60,7 @@ to-do-app/
 
 ### 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/hyejiniya/WIT-To-Do-App.git
 cd to-do-app
 ```
 
@@ -128,8 +128,7 @@ REACT_APP_API_BASE=http://localhost:3001/api
 
 - **Frontend**: [https://wit-to-do-app.vercel.app/](https://wit-to-do-app.vercel.app/)
 - **Backend**: [https://wit-to-do-app.onrender.com](https://wit-to-do-app.onrender.com)
-  - Test endpoint: [https://wit-to-do-app.onrender.com/api/todos](https://wit-to-do-app.onrender.com/api/todos)
-
+ 
 > Make sure to update `REACT_APP_API_BASE` in `.env` for production.
 
 ## 🛠️ Technologies Used
