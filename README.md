@@ -80,6 +80,17 @@ npm install
 npm start     # Start frontend on http://localhost:3000
 ```
 
+### 4. (Optional) Fix CRA build error about `web-vitals`
+
+If you see the following error during deployment or build:
+Module not found: Error: Can't resolve 'web-vitals' in 'src'
+
+Run this command in the **frontend** directory to install the missing dependency:
+
+```bash
+npm install web-vitals
+
+
 ## 🌐 Environment Variables
 
 Frontend `.env`:
@@ -93,8 +104,8 @@ REACT_APP_API_BASE=http://localhost:3001/api
 
 ## 📡 Deployment
 
-- **Frontend**: [Vercel/Netlify link here]
-- **Backend**: [Render/Heroku link here]
+- **Frontend**: [https://wit-to-do-app.vercel.app/](https://wit-to-do-app.vercel.app/)
+- **Backend**: [https://wit-to-do-app.onrender.com](https://wit-to-do-app.onrender.com)
 
 > Make sure to update `REACT_APP_API_BASE` in `.env` for production.
 
