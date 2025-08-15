@@ -101,8 +101,9 @@ REACT_APP_API_BASE=http://localhost:3001/api
 ## 🖱️ How to Use the Frontend
 
 **Add a to-do**
-- Type your task in the input box at the top.
-- Press **Enter** to add it to the list.
+- Type your task in the input box in the left side.
+- Type your task in the input field and press **Enter** to add it to the list.
+- Or click the **Add** button to add it manually.
 
 **Mark as completed**
 - Click the circle bubble next to the to-do to toggle completion status.
