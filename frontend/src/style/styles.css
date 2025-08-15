@@ -1,0 +1,437 @@
+/* ===== Global Theme Variables ===== */
+:root {
+  --bg: #f7f3ea;        /* Desk background (warm beige) */
+  --ink: #2b2b2b;       /* Primary text color */
+  --muted: #7a7a7a;     /* Muted/secondary text color */
+  --accent: #1f7a8c;    /* Accent color for highlights */
+  --border: #e6dfcf;    /* Border color for elements */
+}
+
+/* ===== Global Reset & Layout ===== */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ===== App Container ===== */
+.app {
+  max-width: 1300px;
+  margin: 48px auto;
+  padding: 38px;
+  background: #fffef9;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 12px 50px rgba(0,0,0,.08), 0 2px 10px rgba(0,0,0,.05);
+  position: relative;
+  isolation: isolate;
+}
+
+/* ===== Header (Title + Tagline) ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  background: linear-gradient(90deg, #ca400edb 35%, #b1880b 10%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.4px;
+  text-align: center;
+  display: block;
+}
+
+.tagline::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
+  background-color: var(--muted);
+  opacity: 0.3;
+}
+
+/* ===== Page Wrapper ===== */
+.page {
+  margin: 18px auto 0;
+  padding: 0 16px;
+  max-width: 1300px;
+  overflow: auto;
+}
+
+/* ===== Logo (Top) ===== */
+.logo-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 10px;
+}
+
+.logo-image {
+  max-width: 250px;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.1));
+}
+
+/* ===== Add To-Do Row ===== */
+.add-to-do {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0 10px;
+  position: relative;
+}
+
+.add-to-do::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  background: linear-gradient(180deg, rgba(0,0,0,.03), transparent 40%);
+  border-radius: 14px;
+  z-index: -1;
+}
+
+.add-to-do input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px dashed #d8d0bf;
+  background: #fffdf5;
+  font-size: 15px;
+  color: var(--ink);
+  transition: box-shadow .15s, border-color .15s;
+}
+
+.add-to-do input:focus {
+  outline: none;
+  border-color: #b6ad98;
+  box-shadow: 0 0 0 3px rgba(31,122,140,.15);
+}
+
+.add-to-do button {
+  padding: 14px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: .2px;
+  color: #fff;
+  background: #541d11db;
+  box-shadow: 0 6px 18px rgba(31,122,140,.25);
+  transition: transform .06s ease-in, filter .15s;
+}
+
+.add-to-do button:hover { filter: brightness(1.05); }
+.add-to-do button:active { transform: translateY(1px); }
+.add-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+/* ===== Empty State ===== */
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 26px 0;
+  font-style: italic;
+}
+
+/* ===== Note Board Grid ===== */
+.note-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+/* ===== Individual Note Card ===== */
+.note {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.06);
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.04);
+  transition: transform .15s ease, box-shadow .15s ease, filter .2s ease;
+}
+
+.note:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0,0,0,.08), 0 6px 10px rgba(0,0,0,.05);
+}
+
+/* Pushpin Decoration */
+.note::before {
+  content: "";
+  position: absolute;
+  width: 20px; height: 20px;
+  background-image: url('../images/pushpin.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: -10px; left: 10px;
+}
+
+/* ===== Checkbox Styling ===== */
+.note input[type="checkbox"] {
+  appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,.25);
+  background: #fffef6;
+  display: grid;
+  place-items: center;
+  transition: all .12s ease;
+}
+
+.note input[type="checkbox"]::after {
+  content: "";
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  transform: scale(0);
+  background: var(--accent);
+  transition: transform .12s ease;
+}
+
+.note input[type="checkbox"]:checked {
+  border-color: var(--accent);
+  background: #ecfbff;
+  box-shadow: 0 0 0 3px rgba(31,122,140,.15);
+}
+
+.note input[type="checkbox"]:checked::after {
+  transform: scale(1);
+}
+
+/* ===== Note Text ===== */
+.text {
+  word-break: break-word;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.note.completed {
+  filter: saturate(.75) brightness(.96);
+}
+
+.note.completed .text {
+  text-decoration: line-through;
+  color: #6b654f;
+}
+
+/* ===== Task Buttons (Edit/Delete) ===== */
+.task-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-self: end;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 1px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: background .15s ease, transform .06s ease-in;
+}
+
+.icon-btn:hover { background: rgba(0,0,0,.06); }
+.icon-btn:active { transform: translateY(1px); }
+
+.edit-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.del { color: #9f1d24; }
+
+/* ===== Footer ===== */
+.footer {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.footer strong { font-weight: 800; }
+
+/* Footer Checkbox */
+.footer-bubble {
+  appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,.25);
+  background: #fffef6;
+  display: inline-grid;
+  place-items: center;
+  transition: all .12s ease;
+  margin: 0 4px;
+  vertical-align: middle;
+}
+
+.footer-bubble::after {
+  content: "";
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  transform: scale(0);
+  background: var(--accent);
+  transition: transform .12s ease;
+}
+
+.footer-x {
+  vertical-align: middle;
+  padding: 2px 4px;
+}
+
+/* ===== Error Message (input panel) ===== */
+.error {
+  color: #9f1d24;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* ===== Two-Column Layout ===== */
+.grid-two {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .grid-two {
+    grid-template-columns: 360px 1fr;
+  }
+}
+
+/* ===== Panels ===== */
+.panel {
+  background: #fffef9;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+.panel__body { padding: 16px; }
+.panel__header {
+  padding: 12px 16px 0;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: .2px;
+  color: var(--muted);
+}
+
+.panel--input .add-to-do { margin: 12px 0 8px; }
+.panel--board .note-board { padding: 8px 12px 16px; }
+.panel--input .error { margin: 8px 0 0; }
+
+/* ===== Progress Bar ===== */
+.progress { margin: 10px 0 18px; }
+
+.progress__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.progress__text {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.progress__text strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.progress__percent {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.progress__bar {
+  position: relative;
+  height: 10px;
+  background: rgba(0,0,0,0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  border-radius: 999px;
+  width: 0;
+  transition: width .25s ease;
+}
+
+/* ===== Edit Mode Textarea ===== */
+.edit__textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  min-height: 60px;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* ===== Alert Banner (list area) ===== */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin: 0 0 12px 0;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 6px 14px rgba(0,0,0,.06);
+}
+
+.alert--error {
+  background: #fff5f5;
+  color: #9f1d24;
+}
+
+.alert__text {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.alert__close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: inherit;
+}
+
+.alert__close:hover { background: rgba(0,0,0,.06); }
