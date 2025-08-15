@@ -98,6 +98,28 @@ Frontend `.env`:
 REACT_APP_API_BASE=http://localhost:3001/api
 ``` 
 
+## 🖱️ How to Use the Frontend
+
+**Add a to-do**
+- Type your task in the input box at the top.
+- Press **Enter** to add it to the list.
+
+**Mark as completed**
+- Click the circle bubble next to the to-do to toggle completion status.
+
+**Edit a to-do**
+- **Double-click** the to-do text, or click the **![Edit Icon](frontend/src/images/edit.png)** icon.
+- Type the new text and press **Enter** to save, click outside the input box to save, or press **Esc** to cancel.
+
+**Delete a to-do**
+- Click the **✕ Delete** button to remove the task immediately.
+
+**Progress tracking**
+- A progress bar at the top shows the percentage of completed tasks in real time.
+
+> You can also test the backend API directly by visiting:  
+> [https://wit-to-do-app.onrender.com/api/todos](https://wit-to-do-app.onrender.com/api/todos)
+
 ## 📸 Screenshots
 
 ![Main Page Screenshot](frontend/src/images/NotForgetToDo_mainpage.png)
@@ -106,6 +128,7 @@ REACT_APP_API_BASE=http://localhost:3001/api
 
 - **Frontend**: [https://wit-to-do-app.vercel.app/](https://wit-to-do-app.vercel.app/)
 - **Backend**: [https://wit-to-do-app.onrender.com](https://wit-to-do-app.onrender.com)
+  - Test endpoint: [https://wit-to-do-app.onrender.com/api/todos](https://wit-to-do-app.onrender.com/api/todos)
 
 > Make sure to update `REACT_APP_API_BASE` in `.env` for production.
 
