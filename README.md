@@ -108,7 +108,7 @@ REACT_APP_API_BASE=http://localhost:3001/api
 - Click the circle bubble next to the to-do to toggle completion status.
 
 **Edit a to-do**
-- **Double-click** the to-do text, or click the **![Edit Icon](frontend/src/images/edit.png)** icon.
+- **Double-click** the to-do text, or click the <img src="frontend/src/images/edit.png" alt="Edit Icon" width="16" /> icon.
 - Type the new text and press **Enter** to save, click outside the input box to save, or press **Esc** to cancel.
 
 **Delete a to-do**
