@@ -56,7 +56,6 @@ to-do-app/
 └── ...
 ```
 
-
 ## ⚙️ Installation & Setup
 
 ### 1. Clone the repository
@@ -83,13 +82,14 @@ npm start     # Start frontend on http://localhost:3000
 ### 4. (Optional) Fix CRA build error about `web-vitals`
 
 If you see the following error during deployment or build:
+```
 Module not found: Error: Can't resolve 'web-vitals' in 'src'
+```
 
 Run this command in the **frontend** directory to install the missing dependency:
-
 ```bash
 npm install web-vitals
-
+```
 
 ## 🌐 Environment Variables
 
@@ -109,7 +109,6 @@ REACT_APP_API_BASE=http://localhost:3001/api
 
 > Make sure to update `REACT_APP_API_BASE` in `.env` for production.
 
-
 ## 🛠️ Technologies Used
 
 **Frontend**
@@ -124,4 +123,3 @@ REACT_APP_API_BASE=http://localhost:3001/api
 
 ## 📜 License
 This project is for educational purposes as part of a React & Node.js assignment.
-
