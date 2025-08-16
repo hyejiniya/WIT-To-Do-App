@@ -125,7 +125,7 @@ REACT_APP_API_BASE=http://localhost:3001/api
 
 ## 📸 Screenshots
 
-![Main Page Screenshot](frontend/src/images/NotForgetToDo_mainpage.png)
+![Main Page Screenshot](frontend/src/images/NotForgetToDo_HomePage.png)
 
 ## 📡 Deployment
 
