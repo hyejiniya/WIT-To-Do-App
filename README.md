@@ -93,17 +93,33 @@ npm install web-vitals
 
 ## 🌐 Environment Variables
 
-Frontend `.env`:
+**Frontend `.env` (Development)**
 ```
 REACT_APP_API_BASE=http://localhost:3001/api
-``` 
+```
+
+**Frontend `.env` (Production)**
+```
+#REACT_APP_API_BASE=http://localhost:3001/api
+REACT_APP_API_BASE=https://wit-to-do-app.onrender.com/api
+```
+> After changing `.env`, rebuild the frontend to apply changes.
+
+## 💻 Running in Production Locally (Optional)
+```bash
+cd frontend
+npm run build
+cd ../backend
+# Windows PowerShell
+$env:NODE_ENV="production"; node server.js
+# Mac/Linux
+NODE_ENV=production node server.js
+```
 
 ## 🖱️ How to Use the Frontend
 
 **Add a to-do**
-- Type your task in the input box in the left panel.
-- Type your task in the input field and press **Enter** to add it to the list.
-- Or click the **Add** button to add it manually.
+- Type your task in the input field (left panel) and press **Enter** to add it to the list, or click the **Add** button.
 
 **Mark as completed**
 - Click the circle bubble next to the to-do to toggle completion status.
@@ -120,6 +136,8 @@ REACT_APP_API_BASE=http://localhost:3001/api
 **Progress tracking**
 - A progress bar at the top shows the percentage of completed tasks in real time.
 
+> Note: The backend uses in-memory storage for simplicity; data resets on server restart.
+
 > You can also test the backend API directly by visiting:  
 > [https://wit-to-do-app.onrender.com/api/todos](https://wit-to-do-app.onrender.com/api/todos)
 
@@ -127,10 +145,9 @@ REACT_APP_API_BASE=http://localhost:3001/api
 
 ![Main Page Screenshot](frontend/src/images/NotForgetToDo_HomePage.png)
 
-## 📡 Deployment
-
-- **Frontend**: [https://wit-to-do-app.vercel.app/](https://wit-to-do-app.vercel.app/)
-- **Backend**: [https://wit-to-do-app.onrender.com](https://wit-to-do-app.onrender.com)
+## 🚀 Live Demo
+- **Frontend (Vercel)**: https://wit-to-do-app.vercel.app/
+- **Backend API (Render)**: https://wit-to-do-app.onrender.com/api/todos
  
 > Make sure to update `REACT_APP_API_BASE` in `.env` for production.
 
