@@ -18,7 +18,7 @@ const getBaseURL = () => {
  */
 const api = axios.create({
   baseURL: getBaseURL(),
-  timeout: 8000, // 8s timeout for slow networks
+  timeout: 10000, // 10s timeout for slow networks
 });
 
 /** Fetch all todos */

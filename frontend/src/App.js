@@ -6,14 +6,14 @@ import { fetchTodos, addTodo, updateTodo, deleteTodo } from './api';
 import logo from './images/NotForgetToDo_logo.png';
 import editIcon from './images/edit.png';
 
-// Sticky note color and rotation helpers
+// Sticky note color and rotation
 const NOTE_COLORS = ['#fff9c4', '#ffe0e0', '#d7f9f1', '#e3ecff', '#fdebd3'];
 const pickColor = (id) => NOTE_COLORS[Math.abs(id) % NOTE_COLORS.length];
 const pickRotation = (id) => `${(Math.abs(id * 37) % 7) - 3}deg`;
-const withNoteStyle = (t) => ({
-  ...t,
-  noteColor: pickColor(t.id),
-  noteRotation: pickRotation(t.id),
+const withNoteStyle = (todo) => ({
+  ...todo,
+  noteColor: pickColor(todo.id),
+  noteRotation: pickRotation(todo.id),
 });
 
 export default function App() {
@@ -31,13 +31,14 @@ export default function App() {
   const completed = todos.filter((t) => t.completed).length;
   const percent = total ? Math.round((completed / total) * 100) : 0;
 
-  // Extract a human-readable error message from API response or error object
-  const getErrMsg = (err, fallback) =>
-    err?.response?.data?.error?.message || err?.message || fallback || 'Something went wrong.';
+  // Extract a readable error message from API response or error object
+  const getErrMsg = (err, defaultErrMsg) =>
+    err?.response?.data?.error?.message || err?.message || defaultErrMsg || 'An unexpected error occured!';
 
   // Fetch initial todos from the API
   useEffect(() => {
     let active = true;
+
     fetchTodos()
       .then((data) => {
         if (active) setTodos(data.map(withNoteStyle));
@@ -68,28 +69,32 @@ export default function App() {
   // Toggle completion status of a todo
   const doToggle = useCallback(async (todo) => {
     setListError('');
+
     try {
       const updated = await updateTodo(todo.id, { completed: !todo.completed });
+
       setTodos((curr) =>
-        curr.map((t) =>
-          t.id === updated.id ? withNoteStyle(updated) : t
+        curr.map((todo) =>
+          todo.id === updated.id ? withNoteStyle(updated) : todo
         )
       );
     } catch (err) {
-      setListError(getErrMsg(err, 'Failed to update to-do.'));
+      setListError(getErrMsg(err, 'Failed to update to-do!'));
     }
   }, []);
 
   // Delete a todo
   const doDelete = useCallback(async (todo) => {
     setListError('');
+
     try {
       await deleteTodo(todo.id);
+
       setTodos((currTodo) =>
         currTodo.filter((todoItem) => todoItem.id !== todo.id)
       );
     } catch (err) {
-      setListError(getErrMsg(err, 'Failed to delete to-do.'));
+      setListError(getErrMsg(err, 'Failed to delete to-do!'));
     }
   }, []);
 
@@ -101,13 +106,14 @@ export default function App() {
     setListError('');
     try {
       const updated = await updateTodo(todo.id, { text: trimmed });
+
       setTodos((currTodo) =>
-        currTodo.map((t) =>
-          t.id === updated.id ? { ...t, text: updated.text } : t
+        currTodo.map((todo) =>
+          todo.id === updated.id ? { ...todo, text: updated.text } : todo
         )
       );
     } catch (err) {
-      setListError(getErrMsg(err, 'Failed to rename to-do.'));
+      setListError(getErrMsg(err, 'Failed to rename to-do!'));
     }
   }, []);
 
@@ -115,7 +121,7 @@ export default function App() {
     <div className="page">
       {/* Logo section */}
       <div className="logo-top">
-        <img src={logo} alt="Not Forget To Do Logo" className="logo-image" />
+        <img src={logo} alt="Not Forget To-Do Logo" className="logo-image" />
       </div>
 
       <div className="app">
@@ -143,7 +149,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* Two-column layout: Input panel + Todo board */}
+        {/* Two-column layout: Input panel(left) + Todo board(right) */}
         <div className="grid-two">
           {/* Input panel */}
           <section className="panel panel--input">
@@ -176,7 +182,7 @@ export default function App() {
           &nbsp;Press Enter to add · Double-click text (or click <img src={editIcon} alt="Edit" className="edit-icon" />) to edit ·
           Click the circle bubble
           <input type="checkbox" className="footer-bubble" disabled />
-          to mark as done · Click
+          to mark as done (click again to revert) · Click
           <button className="icon-btn del footer-x" disabled>✕</button>
           to delete
         </div>

@@ -1,5 +1,3 @@
-import TodoItem from './TodoItem';
-
 /**
  * TodoList
  * - Shows an error banner for list actions (toggle/delete/edit) via `listError`.
@@ -7,6 +5,7 @@ import TodoItem from './TodoItem';
  * - Otherwise renders a grid of sticky-note items.
  * - Forwards item-level handlers (toggle/update/delete) to each TodoItem.
  */
+import TodoItem from './TodoItem';
 export default function TodoList({
   todos,
   onToggle,
