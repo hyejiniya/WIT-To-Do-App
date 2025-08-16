@@ -101,16 +101,18 @@ REACT_APP_API_BASE=http://localhost:3001/api
 ## 🖱️ How to Use the Frontend
 
 **Add a to-do**
-- Type your task in the input box in the left side.
+- Type your task in the input box in the left panel.
 - Type your task in the input field and press **Enter** to add it to the list.
 - Or click the **Add** button to add it manually.
 
 **Mark as completed**
 - Click the circle bubble next to the to-do to toggle completion status.
+- **Completed to-dos can be reverted to active** by clicking the circle bubble again.  
 
 **Edit a to-do**
 - **Double-click** the to-do text, or click the <img src="frontend/src/images/edit.png" alt="Edit Icon" width="16" /> icon.
 - Type the new text and press **Enter** to save, click outside the input box to save, or press **Esc** to cancel.
+- Once reverted to active, completed to-dos can be edited normally. 
 
 **Delete a to-do**
 - Click the **✕ Delete** button to remove the task immediately.

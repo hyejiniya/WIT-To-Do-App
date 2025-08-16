@@ -1,4 +1,3 @@
-// controllers/todosController.js
 /**
  * To-Do Controller (in-memory store)
  *
@@ -18,10 +17,10 @@
  */
 
 /* ---------------- In-memory store (for assignment) ---------------- */
-let todos = [{ id: '001', text: 'Welcome to your To-Do!', completed: false }];
-let nextId = 2; // produces '002', '003', ...
+let todos = [{ id: '001', text: 'Welcome to Not Forget To-Do!', completed: false }];
+let nextId = 2;
 
-const getNextId = () => String(nextId++).padStart(3, '0');
+const getNextId = () => String(nextId++).padStart(3, '0'); // produces '002', '003', ...
 
 /* ---------------- GET /api/todos ---------------- */
 /** List all todos */
@@ -30,7 +29,7 @@ exports.getTodos = (req, res) => {
     res.json(todos); // 200
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to get todos.' });
+    res.status(500).json({ error: 'Failed to get todos!' });
   }
 };
 
@@ -52,33 +51,32 @@ exports.createTodo = (req, res) => {
     res.status(201).json(todo);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to create to-do.' });
+    res.status(500).json({ error: 'Failed to create to-do!' });
   }
 };
 
 /* ---------------- PUT /api/todos/:id ---------------- */
 /**
  * Update a todo by ID
- * - Accepts { text?, completed?, dueDate? }
+ * - Accepts { text?, completed? }
  * - Empty string for text is not allowed
- * - dueDate: set value or remove when null
  */
 exports.updateTodo = (req, res) => {
   try {
     const id = String(req.params.id);
-    const target = todos.find((t) => t.id === id);
+    const target = todos.find((todo) => todo.id === id);
 
     if (!target) {
-      return res.status(404).json({ error: 'Todo not found.' });
+      return res.status(404).json({ error: 'Todo not found!' });
     }
 
-    const { text, completed, dueDate } = req.body || {};
+    const { text, completed } = req.body || {};
 
     // Update text (if provided)
     if (typeof text !== 'undefined') {
       const trimmed = typeof text === 'string' ? text.trim() : '';
       if (!trimmed) {
-        return res.status(400).json({ error: 'Text cannot be empty.' });
+        return res.status(400).json({ error: 'Text cannot be empty!' });
       }
       target.text = trimmed;
     }
@@ -86,24 +84,15 @@ exports.updateTodo = (req, res) => {
     // Update completed (if provided)
     if (typeof completed !== 'undefined') {
       if (typeof completed !== 'boolean') {
-        return res.status(400).json({ error: 'Completed must be a boolean.' });
+        return res.status(400).json({ error: 'Completed must be a boolean!' });
       }
       target.completed = completed;
-    }
-
-    // Update dueDate (optional semantics kept from your version)
-    if (typeof dueDate !== 'undefined') {
-      if (dueDate === null) {
-        delete target.dueDate;
-      } else {
-        target.dueDate = dueDate;
-      }
     }
 
     res.json(target); // 200
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to update to-do.' });
+    res.status(500).json({ error: 'Failed to update to-do!' });
   }
 };
 
@@ -115,13 +104,13 @@ exports.deleteTodo = (req, res) => {
     const idx = todos.findIndex((t) => t.id === id);
 
     if (idx === -1) {
-      return res.status(404).json({ error: 'Todo not found.' });
+      return res.status(404).json({ error: 'Todo not found!' });
     }
 
     todos.splice(idx, 1);
     res.status(204).send(); // No Content
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to delete to-do.' });
+    res.status(500).json({ error: 'Failed to delete to-do!' });
   }
 };

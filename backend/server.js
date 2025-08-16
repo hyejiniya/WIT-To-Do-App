@@ -37,11 +37,11 @@ app.use(express.json());
 const todosRouter = require('./routes/todos');
 app.use('/api/todos', todosRouter);
 
-// Simple index/health
+// Simple index
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the To-Do API!' });
 });
-app.get('/healthz', (req, res) => res.json({ ok: true }));
+
 
 /* ---------------- 404 Handler ---------------- */
 app.use((req, res) => {

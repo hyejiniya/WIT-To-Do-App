@@ -67,7 +67,7 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete }) {
             autoFocus
             className="edit__textarea"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(err) => setValue(err.target.value)}
             onBlur={commitEdit}
             onKeyDown={onKeyDown}
             placeholder="Edit your to-do"
@@ -83,7 +83,7 @@ export default function TodoItem({ todo, onToggle, onUpdate, onDelete }) {
           className="icon-btn"
           onClick={doEdit}
           disabled={todo.completed}
-          title={todo.completed ? 'Completed items cannot be edited' : 'Edit'}
+          title={todo.completed ? 'Click the circle bubble to revert, then edit' : 'Edit'}
         >
           <img src={editIcon} alt="Edit" className="edit-icon" />
         </button>
